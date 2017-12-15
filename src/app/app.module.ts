@@ -1,36 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { HttpModule } from '@angular/http'
-import { Http, RequestOptions } from '@angular/http';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../components/login/login';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-// Statics
-import 'rxjs/add/observable/throw';
-
-// Operators
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/toPromise';
+import { AUTH_PROVIDERS }      from 'angular2-jwt';
+import { Storage } from '@ionic/storage';
 
 
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-          tokenGetter: (() => sessionStorage.getItem('id_token')),
-          globalHeaders: [{'Content-Type':'application/json'}],
-     }), http, options);
-}
+
 
 @NgModule({
   declarations: [
@@ -53,7 +38,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: AuthHttp, useClass: IonicErrorHandler,useFactory: authHttpServiceFactory,deps: [Http, RequestOptions]}
+    AUTH_PROVIDERS,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

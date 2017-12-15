@@ -11,5 +11,5 @@
             [(ngModel)] = "model.password" name = "name">
       </div>
 
-      <button (click)="onLogin(model)">Ingresar</button>
+      <button (click)="authenticate(model.username,model.password)">Ingresar</button>
 </form>

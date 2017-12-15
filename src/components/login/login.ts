@@ -40,7 +40,7 @@ export class LoginComponent {
    model = new User('sjjs','ProductA');
 
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private authHttp: AuthHttp) {}
 
   onLogin(credentials) {
 
@@ -56,6 +56,28 @@ export class LoginComponent {
       );
   }
 
+
+  public authenticate(username, password) {
+
+  let creds = JSON.stringify({ username: 'root', password: 'rosa0000' });
+
+  let headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+
+  this.http.post('http://xiencias.com:3000/api-token-auth/', creds, {})
+    .subscribe(
+      data => {
+
+      	
+      
+        localStorage.setItem('id_token', JSON.parse(data._body).token)
+
+        console.log(localStorage)
+      }
+ 
+    );
+
+}
 }
 
 
