@@ -5,16 +5,28 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { HttpModule } from '@angular/http'
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../components/login/login';
-import { AUTH_PROVIDERS }      from 'angular2-jwt';
+
+
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import { Http, RequestOptions, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
+import {IonicStorageModule} from '@ionic/storage';
 
+let storage = new Storage({});
 
-
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: 'Bearer',
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => storage.get('token').then((token: string) => token)),
+  }), http);
+}
 
 
 @NgModule({
@@ -28,6 +40,7 @@ import { Storage } from '@ionic/storage';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,8 +51,11 @@ import { Storage } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    AUTH_PROVIDERS,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    }
   ]
 })
 export class AppModule {}

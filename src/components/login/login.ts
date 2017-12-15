@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,RequestOptions, Headers } from '@angular/http';
 import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 import { Injectable } from '@angular/core';
-import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { AuthHttp, tokenNotExpired,JwtHelper } from 'angular2-jwt';
+import { Storage } from '@ionic/storage';
+
+
 /**
  * Generated class for the LoginComponent component.
  *
@@ -40,47 +43,46 @@ export class LoginComponent {
    model = new User('sjjs','ProductA');
 
 
-  constructor(private http: Http, private authHttp: AuthHttp) {}
-
-  onLogin(credentials) {
+  constructor(private http: Http, private authHttp: AuthHttp,private storage: Storage) {
 
 
-  		console.log('credentials',credentials)
-    
-  	   this.http.post('http://xiencias.com:3000/api-token-auth/', credentials)
-      .map(res => res.json())
-      .subscribe(
 
-        data => localStorage.setItem('id_token', data.id_token),
-        error => console.log(error)
-      );
+
+
   }
+
 
 
   public authenticate(username, password) {
 
   let creds = JSON.stringify({ username: 'root', password: 'rosa0000' });
 
-  let headers = new Headers();
-  headers.append('Content-Type', 'application/json');
 
-  this.http.post('http://xiencias.com:3000/api-token-auth/', creds, {})
+
+  let jwtHelper: JwtHelper = new JwtHelper();
+
+  let options: RequestOptions = new RequestOptions({
+      headers: new Headers({ 'Content-Type': 'application/json' })
+    });
+
+  this.http.post('http://xiencias.com:3000/api-token-auth/', creds, options)
     .subscribe(
       data => {
 
-      	
-      
-        localStorage.setItem('id_token', JSON.parse(data._body).token)
+        
+         
+        //localStorage.setItem('token', JSON.parse(data["_body"]).token)
 
-        console.log(localStorage)
+         this.storage.set('token', JSON.parse(data["_body"]).token)
+         //console.log('jwtHelper',jwtHelper.getTokenExpirationDate(JSON.parse(data["_body"]).token),JSON.stringify(jwtHelper.decodeToken(JSON.parse(data["_body"]).token)))
+
+        //console.log(JSON.parse(data._body).token)
       }
  
     );
 
 }
 }
-
-
 
 
 

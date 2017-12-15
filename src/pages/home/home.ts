@@ -5,9 +5,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
 import { Injectable } from '@angular/core';
 import { LoginComponent } from '../../components/login/login';
-import { AuthHttp } from 'angular2-jwt';
+import { AuthHttp,JwtHelper } from 'angular2-jwt';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -21,9 +22,11 @@ export class HomePage {
   constructor(public navCtrl: NavController,public http: Http,private authHttp: AuthHttp) {}
 
   public securedPing(data) {
-    console.log('dhdhdhdhh',data)
-    this.authHttp.get(`${this.API_URL}/agentes/`)
-      .map(res => res.json())
+
+    let myHeader = new Headers();
+    myHeader.append('Content-Type', 'application/json');
+   
+    this.authHttp.get(`${this.API_URL}/agente/`)
       .subscribe(
         data => {
 
