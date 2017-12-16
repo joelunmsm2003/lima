@@ -1,0 +1,26 @@
+<!-- <ion-slides autoplay='true' >
+
+   <ion-slide *ngFor = 'let c of categoria'>
+
+	<img src="{{host}}{{c.photo}}" alt="">
+   
+
+
+   </ion-slide>
+
+</ion-slides>
+ -->
+<ion-tabs>
+  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Home" tabIcon="home"></ion-tab>
+
+
+</ion-tabs>
+
+<div >
+<div *ngFor = 'let c of categoria' >
+      <a style="display:block;">
+        <img src="{{host}}{{c.photo}}"  style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      </a>
+    </div>
+</div>

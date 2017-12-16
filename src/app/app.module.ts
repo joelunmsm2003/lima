@@ -10,12 +10,18 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../components/login/login';
-
+import { SliderComponent } from '../components/slider/slider';
+import { CategoriasComponent } from '../components/categorias/categorias';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http, RequestOptions, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import {IonicStorageModule} from '@ionic/storage';
+import { HttpClientModule } from '@angular/common/http'; 
+
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { CategoriasProvider } from '../providers/categorias/categorias';
+import { PortadaProvider } from '../providers/portada/portada';
 
 let storage = new Storage({});
 
@@ -34,11 +40,14 @@ export function getAuthHttp(http) {
     MyApp,
     HomePage,
     ListPage,
-    LoginComponent
+    LoginComponent,
+    SliderComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
@@ -51,11 +60,14 @@ export function getAuthHttp(http) {
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleMaps,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http]
-    }
+    },
+    CategoriasProvider,
+    PortadaProvider
   ]
 })
 export class AppModule {}
