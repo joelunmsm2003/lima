@@ -1,4 +1,4 @@
-import { Component,Injectable } from '@angular/core';
+import { Component,Injectable,ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import 'rxjs/add/operator/map';
@@ -11,6 +11,9 @@ import { AuthHttp,JwtHelper } from 'angular2-jwt';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
+import { ListPage } from '../list/list';
+import { VentaPage } from '../venta/venta';
+
 import {
   GoogleMaps,
   GoogleMap,
@@ -21,16 +24,19 @@ import {
   Marker
 } from '@ionic-native/google-maps';
 
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
 
+  @ViewChild('myNav') nav: NavController
 
-
-
- API_URL: string = 'http://xiencias.com:3000';
+  API_URL: string = 'http://xiencias.com:3000';
 
   map: GoogleMap;
 
@@ -43,10 +49,15 @@ export class HomePage {
  
 
   ionViewDidLoad(){
+
     this.loadMap();
+
+    //this.nav.push(ListPage);
 
 
   }
+
+ 
 
 
   loadMap(){
@@ -100,6 +111,13 @@ getPosition(): void{
   });
 }
 
+
+   teta(data){
+
+     console.log('000',data)
+
+     this.nav.push(VentaPage);
+   }
 
 
 

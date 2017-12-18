@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CategoriasProvider } from '../../providers/categorias/categorias';
 import { Categoria } from '../../providers/categorias/categoria';
-
+import { NavController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
-import { ListPage } from '../../pages/list/list';
-import { HomePage } from '../../pages/home/home';
+import { VentaPage } from '../../pages/venta/venta';
 /**
  * Generated class for the SliderComponent component.
  *
@@ -25,32 +24,20 @@ export class SliderComponent {
 
   categoria: Categoria[];
 
-
-  tab1Root = ListPage;
-
-
-  // @ViewChild(Slides) slides: Slides;
-
-  // ngAfterViewInit() {
-  //   this.slides.autoplay = true;
-  // }
-
-
+  ventaPage: any;
 
 
   constructor(private _categoria: CategoriasProvider) {
 
-
-
-
+      this.ventaPage = VentaPage;
 
 	    this._categoria.getcategorias()
       .subscribe(data => this.categoria = data);
 
-
- 
-
   }
+
+
+
 
 
 

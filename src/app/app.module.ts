@@ -5,7 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
+import { ReservaPage } from '../pages/reserva/reserva';
+import { VentaPage } from '../pages/venta/venta';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +41,8 @@ export function getAuthHttp(http) {
     MyApp,
     HomePage,
     ListPage,
+    ReservaPage,
+    VentaPage,
     LoginComponent,
     SliderComponent,
     CategoriasComponent
@@ -55,7 +58,9 @@ export function getAuthHttp(http) {
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    ReservaPage,
+    VentaPage
   ],
   providers: [
     StatusBar,
