@@ -48,16 +48,14 @@
 
     <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
        {{item.nombre}} 
-     <ion-icon  *ngIf="!item.check" name="ios-checkmark-circle-outline" item-end (click)='agregacarrito(item)'></ion-icon>
-     <ion-icon  *ngIf="item.check" name="ios-checkmark-circle" item-end (click)='agregacarrito(item)'></ion-icon> 
+     <ion-icon  *ngIf="!item.check" name="ios-checkmark-circle-outline" item-end (click)='agregacarrito(item);item.check=true'></ion-icon>
+     <ion-icon  *ngIf="item.check" name="ios-checkmark-circle" item-end (click)='agregacarrito(item);item.check=false'></ion-icon> 
 
 
   </ion-item>
 </ion-list>
 
-<button class="btn btn-primary" (click)="agregacarrito()" >Secured Ping</button>
-
-
+{{venta}}
   <div class="fixed44" ng-if='book>0' ><a ui-sref="reservar({servicio: totalpedido})" style=' background: #000;
     padding: 45px;
     border-radius: 2px;
