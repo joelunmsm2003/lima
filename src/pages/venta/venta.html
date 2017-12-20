@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>venta</ion-title>
+    <ion-title>My Look Express</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,8 +16,8 @@
 <ion-content>
 
  <ion-toolbar  no-border-top>
-        <ion-segment primary *ngFor = 'let c of categoria'>
-            <ion-segment-button value="1">{{c}}</ion-segment-button>
+        <ion-segment primary >
+            <ion-segment-button *ngFor = 'let c of categoria' value="1">{{c.nombre}}</ion-segment-button>
            
         </ion-segment>
     </ion-toolbar>
