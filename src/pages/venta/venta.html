@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>My Look Express</ion-title>
+    <ion-title>my look express</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,11 +15,47 @@
 
 <ion-content>
 
- <ion-toolbar  no-border-top>
-        <ion-segment primary >
-            <ion-segment-button *ngFor = 'let c of categoria' value="1">{{c.nombre}}</ion-segment-button>
-           
-        </ion-segment>
-    </ion-toolbar>
+
+
+
+       <ul class="categorias-slider" >
+
+
+
+          <li *ngFor = 'let c of categoria' (click)='traesubcategorias(c)'>
+		
+		<div style="background: #fff;
+    border-radius: 50%;
+    border: 1px solid #000;
+    width: 50px;
+    height: 50px;
+    padding: 8px;">
+		<img src='http://codigito.com:8000/{{c.icono}}'>
+
+		</div>
+
+          <span style='padding-top: 12px;'> {{c.nombre}} </span></li>
+
+
+
+         
+
+          </ul>
+
+
+
+
+
+<ion-list>
+  <ion-item ion-item *ngFor="let item of subcategoria">
+
+    <ion-icon name="ios-add-circle-outline" item-start></ion-icon>
+       {{item.nombre}} {{item.check}}
+     <ion-icon  *ngIf="!item.check" name="ios-checkmark-circle-outline" item-end (click)='agregacarrito(item);item.check=true'></ion-icon>
+     <ion-icon  *ngIf="item.check" name="ios-checkmark-circle" item-end (click)='agregacarrito(item);item.check=false'></ion-icon> 
+
+
+  </ion-item>
+</ion-list>
 
 </ion-content>

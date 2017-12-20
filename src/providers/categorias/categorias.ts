@@ -5,14 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs/Observable';
 import { Categoria } from './categoria';
+import { Subcategoria } from './subcategoria';
+
 /*
   Generated class for the CategoriasProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-
-
 
 
 @Injectable()
@@ -25,6 +25,12 @@ export class CategoriasProvider {
   getcategorias(): Observable<Categoria[]> {
       return this._http.get('http://codigito.com:8000/categoria')
       .map((response: Response) => <Categoria[]> response.json())
+      .do(data => console.log(JSON.stringify(data)));
+   }
+
+  getsubcategorias(categoria): Observable<Subcategoria[]> {
+      return this._http.get('http://codigito.com:8000/subcategoria/'+categoria)
+      .map((response: Response) => <Subcategoria[]> response.json())
       .do(data => console.log(JSON.stringify(data)));
    }
 
