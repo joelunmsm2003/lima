@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { CategoriasProvider } from '../../providers/categorias/categorias';
 import { Categoria } from '../../providers/categorias/categoria';
 import { Subcategoria } from '../../providers/categorias/subcategoria';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the VentaPage page.
  *
@@ -29,12 +29,19 @@ host ='http://codigito.com:8000/'
 
 subcategoria: Subcategoria[];
 
-  constructor(private _categoria: CategoriasProvider,public navCtrl: NavController,public http: Http, public navParams: NavParams) {
+venta: Subcategoria[];
+
+  constructor(private storage: Storage,private _categoria: CategoriasProvider,public navCtrl: NavController,public http: Http, public navParams: NavParams) {
 
 
 
 	this._categoria.getcategorias()
       .subscribe(data => this.categoria = data);
+
+        this._categoria.getsubcategorias(1)
+      .subscribe(data => this.subcategoria = data);
+
+  
 
   }
 
@@ -57,9 +64,16 @@ console.log(data.id)
 
   }
 
-  agregacarrito(data){
+   agregacarrito(data){
 
-    console.log(data)
+    console.log('uuuuuu')
+
+    this.storage.set('pedido', data)
+
+     this.storage.get('pedido').then((val) => {
+    console.log('Your age is', val);
+  });
+
   }
 
 
