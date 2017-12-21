@@ -20,7 +20,6 @@ import { Storage } from '@ionic/storage';
 })
 export class VentaPage {
 
-
 categoria: Categoria[];
 
 myVar=true
@@ -31,6 +30,34 @@ subcategoria: Subcategoria[];
 
 venta: Subcategoria[];
 
+mano: Subcategoria[];
+
+pies: Subcategoria[];
+
+maquillaje: Subcategoria[];
+
+podologia: Subcategoria[];
+
+masajes: Subcategoria[];
+
+manicureninas: Subcategoria[];
+
+baber: Subcategoria[];
+
+extras: Subcategoria[];
+
+book: number=0;
+
+precio: number=0
+
+pedido: any={}
+
+muestradescripcion:boolean=true
+
+
+
+
+
   constructor(private storage: Storage,private _categoria: CategoriasProvider,public navCtrl: NavController,public http: Http, public navParams: NavParams) {
 
 
@@ -38,13 +65,38 @@ venta: Subcategoria[];
 	this._categoria.getcategorias()
       .subscribe(data => this.categoria = data);
 
+
+     this._categoria.getsubcategorias(1)
+     .subscribe(data => this.subcategoria = data);
+
         this._categoria.getsubcategorias(1)
-      .subscribe(data => this.subcategoria = data);
+      .subscribe(data => this.mano = data);
+
+       this._categoria.getsubcategorias(2)
+      .subscribe(data => this.pies = data);
+
+          this._categoria.getsubcategorias(3)
+      .subscribe(data => this.maquillaje = data);
+
+         this._categoria.getsubcategorias(4)
+      .subscribe(data => this.podologia = data);
+
+         this._categoria.getsubcategorias(5)
+      .subscribe(data => this.masajes = data);
+
+       this._categoria.getsubcategorias(6)
+      .subscribe(data => this.manicureninas = data);
+
+       this._categoria.getsubcategorias(7)
+      .subscribe(data => this.baber = data);
+
+
+       this._categoria.getsubcategorias(8)
+      .subscribe(data => this.extras = data);
 
   
 
   }
-
 
 
 
@@ -57,22 +109,85 @@ venta: Subcategoria[];
 
 console.log(data.id)
 
-  this._categoria.getsubcategorias(data.id)
-      .subscribe(data => this.subcategoria = data);
+  // this._categoria.getsubcategorias(data.id)
+  //     .subscribe(data => this.subcategoria = data);
+
+  if (data.id==1){
+
+    this.subcategoria = this.mano
+  }
+
+  if (data.id==2){
+
+    this.subcategoria = this.pies
+  }
+
+   if (data.id==3){
+
+    this.subcategoria = this.maquillaje
+  }
+
+   if (data.id==4){
+
+    this.subcategoria = this.podologia
+  }
+
+   if (data.id==5){
+
+    this.subcategoria = this.masajes
+  }
+
+    if (data.id==6){
+
+    this.subcategoria = this.manicureninas
+  }
+
+   if (data.id==7){
+
+    this.subcategoria = this.baber
+  }
+
+  if (data.id==8){
+
+    this.subcategoria = this.extras
+  }
 
   
 
   }
 
-   agregacarrito(data){
+  
 
-    console.log('uuuuuu')
+  agregacarrito(data){
+
+
+    console.log('agregacarrito',data)
+
+    this.pedido.push(data)
+
+    this.precio = this.precio+data.precio
+   
+    this.book=this.book+1
 
     this.storage.set('pedido', data)
 
-     this.storage.get('pedido').then((val) => {
-    console.log('Your age is', val);
-  });
+    this.storage.get('pedido').then((val) => {
+
+      console.log('Your age is', val);
+
+    });
+
+  }
+
+  quitacarrito(data){
+
+      console.log('quitacarrito',data)
+     
+      this.book=this.book-1
+
+      this.precio = this.precio-data.precio
+
+      console.log(data)
 
   }
 
