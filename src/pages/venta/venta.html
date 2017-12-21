@@ -70,14 +70,37 @@
 
 
 
-  <div class="fixed44" *ngIf='book>0' ><a style=' background: #000;
-    padding: 45px;
-    border-radius: 2px;
-    color: #fff;
-    text-decoration: none;
-    padding: 21px 45px 9px 22px;' >  <ion-icon style='margin-right: 63px;font-size: 31px;
-' ios="ios-cart" md="md-cart"></ion-icon>{{book}} Servicios <span style='margin-left: 50px;
-'> S/. {{precio}}</span></a></div>
+  <div  class="fixed44" *ngIf='book>0' style='background: #000;
+    color: #fff;' [navPush]="reservaPage">
+
+  <div class="row">
+  	<div class="col"><ion-icon style='margin-right: 63px;font-size: 31px;
+' ios="ios-cart" md="md-cart"></ion-icon></div>
+  	
+  	<div class="col" style='margin-top: 7px;'> {{book}} Servicios 
+</div>
+
+
+  	<div class="col" style='margin-top: 8px;'><span style='margin-top: 7px;
+'> S/. {{precio}}</span> </div>
+
+<div class="col">
+	
+	<ion-icon name="ios-arrow-dropright" style='font-size:20px;font-size: 32px;
+    
+    margin-left: 62px;'></ion-icon>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+  
+
+
 
 
 <!-- <button class="fixed44"  ion-button  dark >

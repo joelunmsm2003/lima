@@ -1,3 +1,20 @@
 page-reserva {
 
 }
+
+.circulo{
+        align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: white;
+    width: 3em;
+    border-radius: 50%;
+    vertical-align: middle;
+    height: 3em;
+    padding: 11px;
+    font-size: 13px;
+    padding-left: 17px;
+  }
+  .circulo,h4{
+    display: inline-block;
+  }

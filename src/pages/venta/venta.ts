@@ -5,6 +5,7 @@ import { CategoriasProvider } from '../../providers/categorias/categorias';
 import { Categoria } from '../../providers/categorias/categoria';
 import { Subcategoria } from '../../providers/categorias/subcategoria';
 import { Storage } from '@ionic/storage';
+import { ReservaPage } from '../reserva/reserva';
 /**
  * Generated class for the VentaPage page.
  *
@@ -46,6 +47,8 @@ baber: Subcategoria[];
 
 extras: Subcategoria[];
 
+reservaPage: any;
+
 book: number=0;
 
 precio: number=0
@@ -60,6 +63,8 @@ muestradescripcion:boolean=true
 
   constructor(private storage: Storage,private _categoria: CategoriasProvider,public navCtrl: NavController,public http: Http, public navParams: NavParams) {
 
+
+  		this.reservaPage = ReservaPage;
 
 
 	this._categoria.getcategorias()
@@ -104,6 +109,9 @@ muestradescripcion:boolean=true
   ionViewDidLoad() {
     console.log('ionViewDidLoad VentaPage');
   }
+
+
+
 
   traesubcategorias(data){
 
