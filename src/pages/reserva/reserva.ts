@@ -29,8 +29,7 @@ export class ReservaPage {
 
 
 
-  constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams,private googleMaps: GoogleMaps) {
-  }
+  constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams,private googleMaps: GoogleMaps) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReservaPage');
@@ -52,7 +51,7 @@ export class ReservaPage {
     }
   };
 
-  this.map = this.googleMaps.create('map_canvas', mapOptions);
+  this.map = this.googleMaps.create('mapita', mapOptions);
 
  
 
