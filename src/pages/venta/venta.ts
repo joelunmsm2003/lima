@@ -163,7 +163,6 @@ console.log(data.id)
 
     console.log('agregacarrito',data)
 
-    this.pedido.push(data)
 
     this.precio = this.precio+data.precio
    

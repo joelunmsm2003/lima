@@ -54,8 +54,8 @@
 
 
        {{item.nombre}} 
-     <ion-icon style='margin-top: -7px;' *ngIf="!item.check" name="ios-checkmark-circle-outline" item-end (click)='agregacarrito(item);item.check=true'></ion-icon>
-     <ion-icon  style='margin-top: -7px;' *ngIf="item.check" name="ios-checkmark-circle" item-end (click)='quitacarrito(item);item.check=false'></ion-icon> 
+     <ion-icon style='float:right;font-size: 27px;' *ngIf="!item.check" name="ios-checkmark-circle-outline"  (click)='agregacarrito(item);item.check=true'></ion-icon>
+     <ion-icon  style='float:right;font-size: 27px;' *ngIf="item.check" name="ios-checkmark-circle"  (click)='quitacarrito(item);item.check=false'></ion-icon> 
 
       <p [hidden]="!item.muestradescripcion"  class='detallesubcategoria'> {{item.descripcion}}</p>
 
