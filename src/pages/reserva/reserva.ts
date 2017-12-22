@@ -32,58 +32,63 @@ export class ReservaPage {
   constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams,private googleMaps: GoogleMaps) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReservaPage');
-
-    this.loadMap();
+    let self = this;
+    setTimeout(function() {
+      self.loadMap();
+    }, 5000);
   }
 
+  loadMap() {
 
-    loadMap(){
+    alert('entre mierdasss..')
+    this.map = this.googleMaps.create('map_canvas');
 
-  let mapOptions: GoogleMapOptions = {
-    camera: {
-      target: {
-        lat: 43.0741904, // default location
-        lng: -89.3809802 // default location
-      },
-      zoom: 18,
-      tilt: 30
-    }
-  };
+    alert('estoy marcnadn picnhes')
+    this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      let self = this;
 
-  this.map = this.googleMaps.create('mapita', mapOptions);
+      //self.map.on(GoogleMapsEvent.MAP_DRAG_START).subscribe(self.onMapDragStart);
+      //self.map.on(GoogleMapsEvent.MAP_DRAG).subscribe(self.onMapDrag);
+      //self.map.on(GoogleMapsEvent.MAP_DRAG_END).subscribe(self.onMapDragEnd);
 
- 
+      self.map.addMarker({
+        position: {lat: 0, lng: 0},
+        title: "hello world"
+      }).then(self.onMarkerAdd.bind(self));
 
-  // Wait the MAP_READY before using any methods.
-  this.map.one(GoogleMapsEvent.MAP_READY)
-  .then(() => {
-    // Now you can use all methods safely.
-    this.getPosition();
-  })
-  .catch(error =>{
-    console.log(error);
-  });
-
-}
-
-getPosition(): void{
-  this.map.getMyLocation()
-  .then(response => {
-    this.map.moveCamera({
-      target: response.latLng
     });
-    this.map.addMarker({
-      title: 'My Position',
-      icon: 'blue',
-      animation: 'DROP',
-      position: response.latLng
+
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe((latLng) => {
+      let self = this;
+
+      self.map.addMarker({
+        position: latLng,
+        title: latLng.toUrlValue()
+      }).then(self.onMarkerAdd.bind(self));
+
     });
-  })
-  .catch(error =>{
-    console.log(error);
-  });
-}
+  }
+
+  onMapDragStart() {
+    console.log('onMapDragStart');
+  }
+  onMapDrag() {
+    console.log('onMapDrag');
+  }
+  onMapDragEnd() {
+    console.log('onMapDragEnd');
+  }
+
+  onMarkerAdd(marker:Marker) {
+    marker.one(GoogleMapsEvent.MARKER_CLICK).then(this.onMarkerClick);
+  }
+  onMarkerClick(parameters: any[]) {
+    let marker = parameters[1];
+
+    marker.on(GoogleMapsEvent.INFO_CLICK).subscribe(() => {
+      alert("info clicked");
+    });
+  }
 
 
 }
