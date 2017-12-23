@@ -8,14 +8,14 @@ import { ListPage } from '../pages/list/list';
 import { ReservaPage } from '../pages/reserva/reserva';
 import { VentaPage } from '../pages/venta/venta';
 import { PortadaPage } from '../pages/portada/portada';
-
+import { MapPage } from '../pages/map/map';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../components/login/login';
 import { SliderComponent } from '../components/slider/slider';
 import { CategoriasComponent } from '../components/categorias/categorias';
-
+import { Geolocation } from '@ionic-native/geolocation';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http, RequestOptions, HttpModule } from '@angular/http';
 import { Storage } from '@ionic/storage';
@@ -25,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { PortadaProvider } from '../providers/portada/portada';
+
 import { MapProvider } from '../providers/map/map';
+import { SpinnerProvider } from '../providers/spinner/spinner';
 
 let storage = new Storage({});
 
@@ -47,6 +49,7 @@ export function getAuthHttp(http) {
     ReservaPage,
     VentaPage,
     PortadaPage,
+    MapPage,
     LoginComponent,
     SliderComponent,
     CategoriasComponent
@@ -65,12 +68,14 @@ export function getAuthHttp(http) {
     ListPage,
     ReservaPage,
     VentaPage,
-    PortadaPage
+    PortadaPage,
+    MapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     GoogleMaps,
+    Geolocation,
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
@@ -78,7 +83,8 @@ export function getAuthHttp(http) {
     },
     CategoriasProvider,
     PortadaProvider,
-    MapProvider
+    MapProvider,
+    SpinnerProvider
   ]
 })
 export class AppModule {}
