@@ -1,35 +1,31 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Donde deseas el servicio</ion-title>
-  </ion-navbar>
-</ion-header>
+  <div  class="fixed44" >
 
-<ion-content >
-<!-- 
- <div id="map_canvas"></div> -->
-<!--   <h3>Ionic Menu Starter</h3>-->
-
-<!--   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
-
- <login></login>
-
- <button class="btn btn-primary" (click)="securedPing('hshsh')" >Secured Ping</button>
-
-
- -->
-
-
- <div id="map_canvas"></div>
  
+ququuququ
+</div>
 
+<ion-content>
+  <ion-buttons float-end class="current-location">
+    <button ion-button icon-only (click)="currentLocation()">
+      <img src="./assets/icon/current-location.png" alt="">
+    </button>
+  </ion-buttons>
 
-<!-- <button class="button" (click)="teta()" >Secured Ping</button>
- -->
+  <ion-searchbar autocorrect="off" autocapitalize="off" spellcheck="off" #searchbar placeholder="Search..." class="search-box"></ion-searchbar>
+
+  <div #map id="map" class="map"></div>
+  <div class="centerMarker"></div>
+  <div class="address-view">
+    <ion-list>
+      <ion-item no-lines class="help-text">
+        Drag map to select Address
+      </ion-item>
+      <ion-item no-lines class="address-item">
+        <ion-label stacked class="title-label">ADDRESS</ion-label>
+        <ion-textarea class="address" [(ngModel)]="address"></ion-textarea>
+      </ion-item>
+      <ion-item>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

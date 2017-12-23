@@ -9,7 +9,8 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
-  Marker
+  Marker,
+  LatLng
 } from '@ionic-native/google-maps';
 /**
  * Generated class for the ReservaPage page.
@@ -26,11 +27,7 @@ import {
 export class ReservaPage {
 
 
-	map: GoogleMap;
-
-
-  public rootPage: any = HomePage;
-
+	public rootPage: any = HomePage;
 
 
   constructor(public http: Http,public navCtrl: NavController, public navParams: NavParams,private googleMaps: GoogleMaps) {}
@@ -41,5 +38,6 @@ export class ReservaPage {
 
 
 
-
 }
+
+	

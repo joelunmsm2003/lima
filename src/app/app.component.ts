@@ -5,8 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { PortadaPage } from '../pages/portada/portada';
+import { MapPage } from '../pages/map/map';
 import { IntroPage } from '../pages/intro/intro';
-import { VentaPage } from '../pages/venta/venta';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +16,7 @@ import { VentaPage } from '../pages/venta/venta';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = IntroPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,16 +27,14 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'Venta', component: VentaPage },
-      { title: 'Intro', component: IntroPage }
+      { title: 'Portada', component: PortadaPage },
+      { title: 'Mapa', component: MapPage },
     ];
 
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-
-      this.rootPage = IntroPage;
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
