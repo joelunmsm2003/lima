@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { ReservaPage } from '../pages/reserva/reserva';
 import { VentaPage } from '../pages/venta/venta';
+import { PortadaPage } from '../pages/portada/portada';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { PortadaProvider } from '../providers/portada/portada';
+import { MapProvider } from '../providers/map/map';
 
 let storage = new Storage({});
 
@@ -43,6 +46,7 @@ export function getAuthHttp(http) {
     ListPage,
     ReservaPage,
     VentaPage,
+    PortadaPage,
     LoginComponent,
     SliderComponent,
     CategoriasComponent
@@ -60,7 +64,8 @@ export function getAuthHttp(http) {
     HomePage,
     ListPage,
     ReservaPage,
-    VentaPage
+    VentaPage,
+    PortadaPage
   ],
   providers: [
     StatusBar,
@@ -72,7 +77,8 @@ export function getAuthHttp(http) {
       deps: [Http]
     },
     CategoriasProvider,
-    PortadaProvider
+    PortadaProvider,
+    MapProvider
   ]
 })
 export class AppModule {}
