@@ -8,7 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { PortadaPage } from '../pages/portada/portada';
 import { MapPage } from '../pages/map/map';
 import { IntroPage } from '../pages/intro/intro';
-
+import { RegistroPage } from '../pages/registro/registro';
 
 @Component({
   templateUrl: 'app.html'

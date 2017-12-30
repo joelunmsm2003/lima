@@ -5,6 +5,8 @@ import { NavController } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { VentaPage } from '../../pages/venta/venta';
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the SliderComponent component.
  *
@@ -27,16 +29,28 @@ export class SliderComponent {
   ventaPage: any;
 
 
-  constructor(private _categoria: CategoriasProvider) {
+  constructor(private _categoria: CategoriasProvider,private storage: Storage) {
 
       this.ventaPage = VentaPage;
 
 	    this._categoria.getcategorias()
       .subscribe(data => this.categoria = data);
 
+
+      //this.storage.set('selecciona', )
+
   }
 
+      selecciona(data){
 
+        console.log('jsjjsj',data.id)
+
+        this.storage.set('selecciona',data.id)
+
+        
+
+        
+      }
 
 
 

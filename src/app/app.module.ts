@@ -9,6 +9,7 @@ import { ReservaPage } from '../pages/reserva/reserva';
 import { VentaPage } from '../pages/venta/venta';
 import { PortadaPage } from '../pages/portada/portada';
 import { MapPage } from '../pages/map/map';
+import { RegistroPage } from '../pages/registro/registro';
 import { IntroPage } from '../pages/intro/intro';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,6 +52,7 @@ export function getAuthHttp(http) {
     PortadaPage,
     IntroPage,
     MapPage,
+    RegistroPage,
     LoginComponent,
     SliderComponent,
     CategoriasComponent
@@ -71,7 +73,8 @@ export function getAuthHttp(http) {
     VentaPage,
     PortadaPage,
     MapPage,
-    IntroPage
+    IntroPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

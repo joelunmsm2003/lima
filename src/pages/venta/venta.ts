@@ -67,12 +67,10 @@ muestradescripcion:boolean=true
   		this.reservaPage = ReservaPage;
 
 
-	this._categoria.getcategorias()
+	    this._categoria.getcategorias()
       .subscribe(data => this.categoria = data);
 
 
-     this._categoria.getsubcategorias(1)
-     .subscribe(data => this.subcategoria = data);
 
         this._categoria.getsubcategorias(1)
       .subscribe(data => this.mano = data);
@@ -99,6 +97,55 @@ muestradescripcion:boolean=true
        this._categoria.getsubcategorias(8)
       .subscribe(data => this.extras = data);
 
+      this.storage.get('selecciona').then((val) => {
+
+
+          console.log('valllll',val)
+
+          if (val==1){
+
+          this.subcategoria = this.mano
+          }
+
+          if (val==2){
+
+          this.subcategoria = this.pies
+          }
+
+          if (val==3){
+
+          this.subcategoria = this.maquillaje
+          }
+
+          if (val==4){
+
+          this.subcategoria = this.podologia
+          }
+
+          if (val==5){
+
+          this.subcategoria = this.masajes
+          }
+
+          if (val==6){
+
+          this.subcategoria = this.manicureninas
+          }
+
+          if (val==7){
+
+          this.subcategoria = this.baber
+          }
+
+          if (val==8){
+
+          this.subcategoria = this.extras
+          }
+
+     
+      
+      });
+
   
 
   }
@@ -113,9 +160,9 @@ muestradescripcion:boolean=true
 
 
 
-  traesubcategorias(data){
+  public traesubcategorias(data){
 
-console.log(data.id)
+  console.log(data.id)
 
   // this._categoria.getsubcategorias(data.id)
   //     .subscribe(data => this.subcategoria = data);

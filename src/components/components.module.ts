@@ -6,6 +6,7 @@ import { SliderComponent } from './slider/slider';
 import { CategoriasComponent } from './categorias/categorias';
 import { ReservaComponent } from './reserva/reserva';
 import { SociaComponent } from './socia/socia';
+import { RegistroComponent } from './registro/registro';
 @NgModule({
 	declarations: [
     LoginComponent,
@@ -14,6 +15,7 @@ import { SociaComponent } from './socia/socia';
     CategoriasComponent,
     ReservaComponent,
     SociaComponent,
+    RegistroComponent,
     ],
 	imports: [HttpModule],
 	exports: [,
@@ -23,6 +25,7 @@ import { SociaComponent } from './socia/socia';
     CategoriasComponent,
     ReservaComponent,
     SociaComponent,
+    RegistroComponent,
     ]
 })
 export class ComponentsModule {}
